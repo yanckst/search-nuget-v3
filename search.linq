@@ -25,7 +25,7 @@ private void InitializeNugetDependencies()
 	PackageSource packageSource = new PackageSource("https://api.nuget.org/v3/index.json");
 	this.sourceRepository = new NuGet.Protocol.Core.Types.SourceRepository(packageSource, providers);
 
-	var rootPath = @"C:\Users\Yanick\Desktop\nuget"; // where packages will be installed
+	var rootPath = @"yourPathToNugetFolder";; // where packages will be installed
 	var settings = Settings.LoadDefaultSettings(rootPath);
 	var packageSourceProvider = new PackageSourceProvider(settings);
 	var sourceRepositoryProvider = new SourceRepositoryProvider(packageSourceProvider, providers);
