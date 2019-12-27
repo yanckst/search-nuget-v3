@@ -24,17 +24,6 @@ private void InitializeNugetDependencies()
 
 	PackageSource packageSource = new PackageSource("https://api.nuget.org/v3/index.json");
 	this.sourceRepository = new NuGet.Protocol.Core.Types.SourceRepository(packageSource, providers);
-
-	var rootPath = @"yourPathToNugetFolder"; // where packages will be installed
-	var settings = Settings.LoadDefaultSettings(rootPath);
-	var packageSourceProvider = new PackageSourceProvider(settings);
-	var sourceRepositoryProvider = new SourceRepositoryProvider(packageSourceProvider, providers);
-
-	var project = new FolderNuGetProject(rootPath);
-	var packageManager = new NuGetPackageManager(sourceRepositoryProvider, settings, rootPath)
-	{
-		PackagesFolderNuGetProject = project
-	};
 }
 
 
@@ -48,6 +37,5 @@ private async Task<IEnumerable<IPackageSearchMetadata>> SearchTestPackage(string
 		IncludeDelisted = false
 	};
 
-	return await searchResource
-		.SearchAsync(packageName, searchFilter, 0, 10, null, CancellationToken.None);
+	return await searchResource.SearchAsync(packageName, searchFilter, 0, 10, null, CancellationToken.None);
 }
